@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../core/values/values.dart';
 import '../controllers/login_controller.dart';
+import '../widgets/widgets.dart';
 
 // Al poner <LoginController>, le dices a la vista exactamente qué cerebro usar
 class LoginView extends GetView<LoginController> {
@@ -39,11 +40,12 @@ class LoginView extends GetView<LoginController> {
                           child: const SizedBox(), // Contenido vacío
                         ),
                         //*Card con elementos de login
-                        _LoginCard(),
+                        LoginCard(),
                       ],
                     ),
                   ),
                 ),
+                //*Texto de copyright abajo - FIJO DEBE IR AL FINAL
                 Text(AppStrings.copyright, style: AppStyles.copyright),
               ],
             ),
@@ -54,95 +56,4 @@ class LoginView extends GetView<LoginController> {
   }
 }
 
-class _LoginCard extends StatelessWidget {
-  const _LoginCard();
 
-  static const _titleStyle = AppStyles.title;
-
-  static const _subtitleStyle = AppStyles.subtitle;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
-      margin: const EdgeInsets.symmetric(horizontal: 20),
-      decoration: BoxDecoration(
-        color: Colors.black26,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black38,
-            spreadRadius: 5,
-            blurRadius: 7,
-            offset: const Offset(0, 3),
-          ),
-        ],
-        borderRadius: BorderRadius.circular(15),
-      ),
-      width: double.infinity,
-      child: Column(
-        children: [
-          //*Logo de la app
-          const CircleAvatar(
-            backgroundImage: AssetImage(AppAssets.logo),
-            radius: 50,
-          ),
-          const SizedBox(height: 16),
-
-          //*Titulo y subtitulo
-          Text(
-            AppStrings.loginTitle,
-            style: _titleStyle,
-            textAlign: TextAlign.center,
-          ),
-          const SizedBox(height: 8),
-
-          Text(
-            AppStrings.loginSubtitle,
-            style: _subtitleStyle,
-            textAlign: TextAlign.center,
-          ),
-          const SizedBox(height: 16),
-
-          //*Formulario de login
-          _LoginForm(),
-          const SizedBox(height: 16),
-
-          //Botón de ingresar
-          TextButton(
-            onPressed: () => {
-              //TODO: validar
-              Get.toNamed('/HOME'),
-            },
-            style: AppStyles.loginButtonStyle,
-            child: Text(AppStrings.btnEnter),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class _LoginForm extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Form(
-      autovalidateMode: AutovalidateMode.onUserInteraction,
-      child: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: TextFormField(
-          keyboardType: TextInputType.phone,
-          decoration: AppStyles.loginInputDecoration.copyWith(
-            hintText: AppStrings.phoneHint,
-          ),
-          validator: (value) {
-            //* Expresión regular simple para validar números de teléfono
-            RegExp regExp = RegExp(AppStrings.phoneValidationPattern);
-            return (value != null && regExp.hasMatch(value))
-                ? null
-                : AppStrings.invalidPhoneError;
-          },
-        ),
-      ),
-    );
-  }
-}
