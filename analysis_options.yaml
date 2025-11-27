@@ -1,0 +1,9 @@
+include: package:flutter_lints/flutter.yaml
+analyzer:
+  errors:
+    constant_identifier_names: ignore
+    
+linter:
+  rules:
+    prefer_relative_imports: true
+    # Puedes agregar más reglas aquí si quieres ser estricto
