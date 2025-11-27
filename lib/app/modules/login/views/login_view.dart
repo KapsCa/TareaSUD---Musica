@@ -1,17 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../../core/values/values.dart';
 import '../controllers/login_controller.dart';
 
 // Al poner <LoginController>, le dices a la vista exactamente qué cerebro usar
 class LoginView extends GetView<LoginController> {
   const LoginView({super.key});
-
-  static const _backgroundImagePath = 'assets/images/login_background.png';
-  static const _logoImagePath = 'assets/images/icono.png';
-  static const _titleText = 'Ingresa tu numero de teléfono';
-  static const _subtitleText =
-      'Por favor, ingresa tu número de teléfono para continuar';
-  static const _phonePlaceholder = '9931234567';
 
   @override
   Widget build(BuildContext context) {
@@ -23,9 +17,9 @@ class LoginView extends GetView<LoginController> {
       body: Stack(
         fit: StackFit.expand,
         children: [
-          //Imagen de fondo con filtro de color - FIJA
-          Image.asset(_backgroundImagePath, fit: BoxFit.cover),
-          //Contenido de la pantalla
+          //*Imagen de fondo con filtro de color - FIJA DEBE IR PRIMERO
+          Image.asset(AppAssets.loginBackground, fit: BoxFit.cover),
+          //*Contenido de la pantalla
           SafeArea(
             child: Column(
               children: [
@@ -36,26 +30,21 @@ class LoginView extends GetView<LoginController> {
                     ),
                     child: Column(
                       children: [
-                        //Espacio en blanco arriba
+                        //*Espacio en blanco arriba
                         AnimatedContainer(
-                          duration: const Duration(
-                            milliseconds: 300,
-                          ), // Cuánto tarda la animación
+                          duration: const Duration(milliseconds: 300),
                           height: isKeyboardOpen
                               ? 0
-                              : 80, // <--- AQUÍ ESTÁ TU TRUCO MAESTRO
+                              : 80, //* <--- Cuando se abre el teclado, se oculta
                           child: const SizedBox(), // Contenido vacío
                         ),
-                        //Card con elementos de login
+                        //*Card con elementos de login
                         _LoginCard(),
                       ],
                     ),
                   ),
                 ),
-                Text(
-                  'Creada por KevinCa © Nov/2025',
-                  style: TextStyle(color: Colors.white70, fontSize: 12),
-                ),
+                Text(AppStrings.copyright, style: AppStyles.copyright),
               ],
             ),
           ),
@@ -68,36 +57,9 @@ class LoginView extends GetView<LoginController> {
 class _LoginCard extends StatelessWidget {
   const _LoginCard();
 
-  static final _inputDecoration = InputDecoration(
-    prefixIcon: const Icon(Icons.phone),
-    border: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(10.0),
-      borderSide: const BorderSide(color: Colors.purple),
-    ),
-    enabledBorder: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(10.0),
-      borderSide: const BorderSide(color: Colors.purpleAccent),
-    ),
-    focusedBorder: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(10.0),
-      borderSide: const BorderSide(color: Colors.deepPurple, width: 2.0),
-    ),
-    filled: true,
-    fillColor: Colors.white.withOpacity(0.1),
-    floatingLabelBehavior: FloatingLabelBehavior.always,
-    contentPadding: const EdgeInsets.symmetric(
-      vertical: 15.0,
-      horizontal: 10.0,
-    ),
-    hintText: LoginView._phonePlaceholder,
-  );
+  static const _titleStyle = AppStyles.title;
 
-  static const _titleStyle = TextStyle(
-    fontSize: 24,
-    fontWeight: FontWeight.bold,
-  );
-
-  static const _subtitleStyle = TextStyle(fontSize: 14, color: Colors.white70);
+  static const _subtitleStyle = AppStyles.subtitle;
 
   @override
   Widget build(BuildContext context) {
@@ -119,42 +81,40 @@ class _LoginCard extends StatelessWidget {
       width: double.infinity,
       child: Column(
         children: [
-          //Logo de la app
+          //*Logo de la app
           const CircleAvatar(
-            backgroundImage: AssetImage(LoginView._logoImagePath),
+            backgroundImage: AssetImage(AppAssets.logo),
             radius: 50,
           ),
           const SizedBox(height: 16),
-          //Titulo y subtitulo
+
+          //*Titulo y subtitulo
           Text(
-            LoginView._titleText,
+            AppStrings.loginTitle,
             style: _titleStyle,
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 8),
+
           Text(
-            LoginView._subtitleText,
+            AppStrings.loginSubtitle,
             style: _subtitleStyle,
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 16),
-          //Formulario de login
-          _LoginForm(inputDecoration: _inputDecoration),
+
+          //*Formulario de login
+          _LoginForm(),
           const SizedBox(height: 16),
+
           //Botón de ingresar
           TextButton(
             onPressed: () => {
-              //TODO: GO HOME despues de validar
+              //TODO: validar
+              Get.toNamed('/HOME'),
             },
-            style: TextButton.styleFrom(
-              backgroundColor: Colors.purple,
-              foregroundColor: Colors.white,
-              padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 40),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(30),
-              ),
-            ),
-            child: Text('Ingresar'),
+            style: AppStyles.loginButtonStyle,
+            child: Text(AppStrings.btnEnter),
           ),
         ],
       ),
@@ -163,11 +123,6 @@ class _LoginCard extends StatelessWidget {
 }
 
 class _LoginForm extends StatelessWidget {
-  const _LoginForm({required InputDecoration inputDecoration})
-    : _inputDecoration = inputDecoration;
-
-  final InputDecoration _inputDecoration;
-
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -176,14 +131,15 @@ class _LoginForm extends StatelessWidget {
         padding: const EdgeInsets.all(10.0),
         child: TextFormField(
           keyboardType: TextInputType.phone,
-          decoration: _inputDecoration,
+          decoration: AppStyles.loginInputDecoration.copyWith(
+            hintText: AppStrings.phoneHint,
+          ),
           validator: (value) {
-            String pattern =
-                r'^(\+\d{1,2}\s?)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$';
-            RegExp regExp = RegExp(pattern);
+            //* Expresión regular simple para validar números de teléfono
+            RegExp regExp = RegExp(AppStrings.phoneValidationPattern);
             return (value != null && regExp.hasMatch(value))
                 ? null
-                : 'Número de teléfono inválido';
+                : AppStrings.invalidPhoneError;
           },
         ),
       ),
