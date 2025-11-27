@@ -6,80 +6,118 @@ import '../controllers/login_controller.dart';
 class LoginView extends GetView<LoginController> {
   const LoginView({super.key});
 
+  static const _backgroundImagePath = 'assets/images/login_background.png';
+  static const _logoImagePath = 'assets/images/icono.png';
+  static const _titleText = 'Ingresa tu numero de teléfono';
+  static const _subtitleText =
+      'Por favor, ingresa tu número de teléfono para continuar';
+  static const _phonePlaceholder = '9931234567';
+
   @override
   Widget build(BuildContext context) {
-    final inputDecoration = InputDecoration(
-      prefixIcon: Icon(Icons.phone),
-      border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(10.0),
-        borderSide: BorderSide(color: Colors.purple),
-      ),
-      enabledBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(10.0),
-        borderSide: BorderSide(color: Colors.purpleAccent),
-      ),
-      focusedBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(10.0),
-        borderSide: BorderSide(color: Colors.deepPurple, width: 2.0),
-      ),
-      filled: true,
-      fillColor: Colors.white.withOpacity(0.1),
-      floatingLabelBehavior: FloatingLabelBehavior.always,
-      contentPadding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
-      // Agregando un sombreado sutil
-      // No hay una propiedad directa para 'sombreado' en InputDecoration,
-      // pero se puede simular con un color de fondo y un borde bien definido.
-      // Para una elevación y sombra más pronunciada, se usaría un Container o Card envolvente.
-      hintText: '9931234567',
-    );
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Stack(
         fit: StackFit.expand,
         children: [
           //Imagen de fondo con filtro de color - FIJA
-          ColorFiltered(
-            colorFilter: ColorFilter.mode(Colors.black26, BlendMode.darken),
-            child: Image.asset(
-              'assets/images/login_background.png',
-              fit: BoxFit.cover,
-            ),
-          ),
+            Image.asset(_backgroundImagePath, fit: BoxFit.cover),
           //Contenido de la pantalla
           SafeArea(
             child: SingleChildScrollView(
               child: Column(
-                children: [
+                children: const [
                   //Espacio en blanco arriba
                   SizedBox(height: 80),
                   //Logo de la app
-                  CircleAvatar(
-                    backgroundImage: AssetImage('assets/images/icono.png'),
-                    radius: 50,
-                  ),
-                  //Texto principal
-                  Text(
-                    'Ingresa tu numero de teléfono',
-                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(height: 8),
-                  Text(
-                    'Por favor, ingresa tu número de teléfono para continuar',
-                    style: TextStyle(fontSize: 14, color: Colors.white70),
-                    textAlign: TextAlign.center,
-                  ),
-                  SizedBox(height: 8),
-                  //Campo de entrada de teléfono
-                  Form(
-                    child: Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: TextFormField(
-                        keyboardType: TextInputType.phone,
-                        decoration: inputDecoration,
-                      ),
-                    ),
-                  ),
+                  _LoginCard(),
                 ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _LoginCard extends StatelessWidget {
+  const _LoginCard();
+
+  static final _inputDecoration = InputDecoration(
+    prefixIcon: const Icon(Icons.phone),
+    border: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(10.0),
+      borderSide: const BorderSide(color: Colors.purple),
+    ),
+    enabledBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(10.0),
+      borderSide: const BorderSide(color: Colors.purpleAccent),
+    ),
+    focusedBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(10.0),
+      borderSide: const BorderSide(color: Colors.deepPurple, width: 2.0),
+    ),
+    filled: true,
+    fillColor: Colors.white.withOpacity(0.1),
+    floatingLabelBehavior: FloatingLabelBehavior.always,
+    contentPadding: const EdgeInsets.symmetric(
+      vertical: 15.0,
+      horizontal: 10.0,
+    ),
+    hintText: LoginView._phonePlaceholder,
+  );
+
+  static const _titleStyle = TextStyle(
+    fontSize: 24,
+    fontWeight: FontWeight.bold,
+  );
+
+  static const _subtitleStyle = TextStyle(fontSize: 14, color: Colors.white70);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(10),
+      margin: const EdgeInsets.symmetric(horizontal: 20),
+      decoration: BoxDecoration(
+        color: Colors.black26,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black38,
+            spreadRadius: 5,
+            blurRadius: 7,
+            offset: const Offset(0, 3),
+          ),
+        ],
+        borderRadius: BorderRadius.circular(10),
+      ),
+      width: double.infinity,
+      child: Column(
+        children: [
+          const CircleAvatar(
+            backgroundImage: AssetImage(LoginView._logoImagePath),
+            radius: 50,
+          ),
+          const SizedBox(height: 16),
+          Text(
+            LoginView._titleText,
+            style: _titleStyle,
+            textAlign: TextAlign.center,
+          ),
+          const SizedBox(height: 8),
+          Text(
+            LoginView._subtitleText,
+            style: _subtitleStyle,
+            textAlign: TextAlign.center,
+          ),
+          const SizedBox(height: 16),
+          Form(
+            child: Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: TextFormField(
+                keyboardType: TextInputType.phone,
+                decoration: _inputDecoration,
               ),
             ),
           ),
