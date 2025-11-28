@@ -12,14 +12,15 @@ class FavoriteSlider extends GetView<HomeController> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: const EdgeInsets.only(left: 20.0, top: 16.0, bottom: 8.0),
+          padding: AppStyles.homePadding,
           child: Align(
             alignment: Alignment.centerLeft,
             child: Text(AppStrings.favorites, style: AppStyles.title),
           ),
         ),
+        //*Slider horizontal de canciones favoritas
         Obx(
-          () =>  SizedBox(
+          () => SizedBox(
             height: 150,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
@@ -28,9 +29,7 @@ class FavoriteSlider extends GetView<HomeController> {
                 final song = controller.favoriteSongsObs[index];
                 return Container(
                   width: 150,
-                  margin: const EdgeInsets.only(
-                    left: 20.0,
-                  ), // Sólo margen izquierdo
+                  margin: const EdgeInsets.only(left: 20.0),
                   decoration: AppStyles.favoriteImageDecoration,
                   //*Imagen de las canciones favoritas
                   child: ClipRRect(
@@ -49,17 +48,19 @@ class FavoriteSlider extends GetView<HomeController> {
                           child: Container(
                             width: double.infinity,
                             height: 45,
-                            padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                            color: const Color.fromARGB(77, 0, 0, 0),
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 8.0,
+                            ),
+                            color: Colors.black38,
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Expanded(
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
-                                      //!Estatico por ahora
                                       Text(
                                         song.title,
                                         maxLines: 1,
@@ -68,14 +69,12 @@ class FavoriteSlider extends GetView<HomeController> {
                                       ),
                                       Text(
                                         song.duration,
-                                        style: TextStyle(
-                                          color: Colors.white70,
-                                          fontSize: 10,
-                                        ),
+                                        style: AppStyles.duration
                                       ),
                                     ],
                                   ),
                                 ),
+                                //*icono de play
                                 const Icon(
                                   Icons.play_arrow,
                                   color: Colors.white,

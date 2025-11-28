@@ -12,4 +12,6 @@ abstract class AppStrings {
   static const String btnPlay = 'Reproducir';
   static const String favorites = 'Favoritos';
   static const String recentlyPlayed = 'Escuchados recientemente';
+  static const String album = 'Album';
+
 }

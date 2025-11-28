@@ -5,12 +5,19 @@ abstract class AppStyles {
   static const TextStyle title = TextStyle(
     fontSize: 24,
     fontWeight: FontWeight.bold,
+    overflow: TextOverflow.ellipsis,
   );
 
   static const TextStyle subtitle = TextStyle(
     fontSize: 14,
     color: Colors.white70,
   );
+
+  static const TextStyle duration = TextStyle(
+    fontSize: 10,
+    color: Colors.white,
+  );
+
 
   static const TextStyle copyright = TextStyle(
     color: Colors.white70,
@@ -78,6 +85,9 @@ abstract class AppStyles {
   );
 
   //? 4. Otros estilos globales
+  //*Pading Home
+    static EdgeInsets homePadding = const EdgeInsets.only(left: 20.0, top: 16.0, bottom: 8.0);
+
   //*Sombra para tarjetas
   static BoxShadow boxShadowBanner = BoxShadow(
     // ignore: deprecated_member_use
@@ -96,7 +106,7 @@ abstract class AppStyles {
   );
   //*Estilo para las imágenes en slider
   static BoxDecoration favoriteImageDecoration = BoxDecoration(
-    borderRadius: BorderRadius.circular(10),
-    boxShadow: [boxShadowBanner],
+    borderRadius: BorderRadius.circular(20),
   );
+
 }

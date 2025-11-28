@@ -13,10 +13,10 @@ class PlayButton extends StatelessWidget {
       },
       style: AppStyles.bannerButton,
       child: const Row(
+        spacing: 5,
         mainAxisSize: MainAxisSize.min,
         children: [
           Icon(Icons.play_arrow_rounded, size: 20),
-          SizedBox(width: 5),
           Text(AppStrings.btnPlay, style: AppStyles.btnPlay),
         ],
       ),

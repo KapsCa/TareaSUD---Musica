@@ -144,4 +144,5 @@ class HomeController extends GetxController {
     ),
   ].obs; 
 
+  
 }
