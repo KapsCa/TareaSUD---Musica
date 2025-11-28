@@ -29,6 +29,7 @@ class LoginCard extends GetView<LoginController> {
       ),
       width: double.infinity,
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
           //*Logo de la app
           const CircleAvatar(
@@ -58,9 +59,7 @@ class LoginCard extends GetView<LoginController> {
 
           //Botón de ingresar
           TextButton(
-            onPressed: () => {
-              controller.submit(),
-            },
+            onPressed: () => {controller.submit()},
             style: AppStyles.loginButtonStyle,
             child: Text(AppStrings.btnEnter),
           ),
@@ -74,16 +73,19 @@ class _LoginForm extends GetView<LoginController> {
   @override
   Widget build(BuildContext context) {
     return Form(
+      key: controller.formKey,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       child: Padding(
         padding: const EdgeInsets.all(10.0),
         child: TextFormField(
+          controller: controller.phoneController,
           keyboardType: TextInputType.phone,
+          textInputAction: TextInputAction.done,
+          onFieldSubmitted: (_) => controller.submit(),
           decoration: AppStyles.loginInputDecoration.copyWith(
             hintText: AppStrings.phoneHint,
           ),
-          onChanged: (value) => controller.onPhoneNumberChanged(value),
-          validator: (value) => controller.validatePhone(value),
+          validator: controller.validatePhone,
         ),
       ),
     );

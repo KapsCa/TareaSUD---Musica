@@ -1,12 +1,18 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../core/values/values.dart';
 import '../../../routes/app_pages.dart';
 
 class LoginController extends GetxController {
-  final phoneNumber = ''.obs;
+  final phoneController = TextEditingController();
 
-  void onPhoneNumberChanged(String value) {
-    phoneNumber.value = value;
+final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
+@override
+  void onClose() {
+    // Buena práctica: Liberar memoria cuando el controlador se destruye
+    phoneController.dispose();
+    super.onClose();
   }
 
   String? validatePhone(String? value) {
@@ -24,10 +30,15 @@ class LoginController extends GetxController {
   }
 
   void submit() {
-    if (validatePhone(phoneNumber.value) == null) {
-      Get.toNamed(AppPages.HOME);
+    if (formKey.currentState!.validate()) {
+      FocusManager.instance.primaryFocus?.unfocus();
+      
+      Get.offNamed(AppPages.HOME);
     } else {
-      Get.snackbar('Error', AppStrings.invalidPhoneError);
+      Get.snackbar(
+        'Atención',
+        'Por favor verifica el número de teléfono',
+      );
     }
   }
 }
