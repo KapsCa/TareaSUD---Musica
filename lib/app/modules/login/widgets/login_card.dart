@@ -29,7 +29,6 @@ class LoginCard extends GetView<LoginController> {
       ),
       width: double.infinity,
       child: Column(
-        spacing: 16,
         mainAxisSize: MainAxisSize.min,
         children: [
           //*Logo de la app
@@ -37,6 +36,7 @@ class LoginCard extends GetView<LoginController> {
             backgroundImage: AssetImage(AppAssets.logo),
             radius: 50,
           ),
+          const SizedBox(height: 16),
 
           //*Titulo y subtitulo
           Text(
@@ -44,15 +44,18 @@ class LoginCard extends GetView<LoginController> {
             style: _titleStyle,
             textAlign: TextAlign.center,
           ),
+          const SizedBox(height: 8),
 
           Text(
             AppStrings.loginSubtitle,
             style: _subtitleStyle,
             textAlign: TextAlign.center,
           ),
+          const SizedBox(height: 16),
 
           //*Formulario de login
           _LoginForm(),
+          const SizedBox(height: 16),
 
           //Botón de ingresar
           TextButton(

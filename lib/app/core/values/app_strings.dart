@@ -13,5 +13,8 @@ abstract class AppStrings {
   static const String favorites = 'Favoritos';
   static const String recentlyPlayed = 'Escuchados recientemente';
   static const String album = 'Album';
+  static const String logOut = 'Cerrar sesión';
+  static const String menuTitle = 'Opciones';
+
 
 }

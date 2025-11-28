@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 
 import '../../../core/values/values.dart';
 import '../controllers/home_controller.dart';
+import 'widgets.dart';
 
 class AlbumListView extends GetView<HomeController> {
   const AlbumListView({super.key});
@@ -26,36 +27,7 @@ class AlbumListView extends GetView<HomeController> {
             itemCount: controller.albumListObs.length,
             itemBuilder: (context, index) {
               final album = controller.albumListObs[index];
-              return Padding(
-                padding: const EdgeInsets.only(bottom: 5),
-                child: Row(
-                  children: [
-                    const SizedBox(width: 10),
-                    CircleAvatar(
-                      backgroundImage: AssetImage(album.imagePath),
-                      radius: 35,
-                    ),
-                    const SizedBox(width: 10),
-                    Expanded(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(album.title, style: AppStyles.title),
-                          Text(album.artist, style: AppStyles.subtitle),
-                          Text(album.duration, style: AppStyles.duration),
-                        ],
-                      ),
-                    ),
-                    IconButton(
-                      padding: const EdgeInsets.all(0),
-                      icon: const Icon(Icons.more_vert, color: Colors.white70),
-                      onPressed: () {},
-                    ),
-                    const SizedBox(width: 10),
-                  ],
-                ),
-              );
+              return AlbumListItem(album: album);
             },
           ),
         ),

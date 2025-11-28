@@ -6,6 +6,7 @@ abstract class AppStyles {
     fontSize: 24,
     fontWeight: FontWeight.bold,
     overflow: TextOverflow.ellipsis,
+    color: Colors.white,
   );
 
   static const TextStyle subtitle = TextStyle(
@@ -18,6 +19,18 @@ abstract class AppStyles {
     color: Colors.white,
   );
 
+  static const TextStyle menuTitle = TextStyle(
+    fontSize: 24,
+    fontWeight: FontWeight.bold,
+    color: Colors.white,
+    );
+
+  static const TextStyle menuOptions = TextStyle(
+    fontSize: 16,
+    color: Colors.white,
+    fontStyle: FontStyle.italic,
+  );
+  
 
   static const TextStyle copyright = TextStyle(
     color: Colors.white70,

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-// import '../../../routes/app_pages.dart';
-// import '../../../core/values/app_styles.dart';
+
+import '../../../routes/app_pages.dart';
+import '../../../core/values/values.dart';
 import '../controllers/home_controller.dart';
 import '../widgets/widgets.dart';
 
@@ -12,9 +13,6 @@ class HomeView extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        // title: const Text('Inicio'),
-        // centerTitle: true,
-        leading: IconButton(icon: Icon(Icons.sort), onPressed: () {}),
         actions: [
           SearchAnchor(
             builder: (context, controller) {
@@ -32,30 +30,49 @@ class HomeView extends GetView<HomeController> {
               ];
             },
           ),
+
           IconButton(icon: const Icon(Icons.notifications), onPressed: () {}),
-          // Simular cerrar sesión y volver al login
-          // IconButton(
-          //   icon: const Icon(Icons.logout),
-          //   onPressed: () {
-          //     // Simular cerrar sesión y volver al login
-          //     Get.offAllNamed(Routes.LOGIN);
-          //   },
-          // )
         ],
+      ),
+      drawer: Drawer(
+        width: MediaQuery.of(context).size.width * 0.6,
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+             Container(
+              height: 80,
+              decoration: BoxDecoration(color: Colors.deepPurple),
+              padding: EdgeInsetsGeometry.only(left: 15, top: 30),
+              margin: EdgeInsets.zero,
+              child: Text(AppStrings.menuTitle, style: AppStyles.menuTitle),
+            ),
+            ListTile(
+              title: const Text(
+                AppStrings.logOut,
+                style: AppStyles.menuOptions,
+              ),
+              leading: const Icon(Icons.logout),
+              onTap: () {
+                Get.offNamed(AppPages.LOGIN);
+              },
+            ),
+          ],
+        ),
       ),
       body: SingleChildScrollView(
         child: Column(
           children: [
             //* Banner de escuchados recientemente
             MusicBanner(),
-            //* Sección de Favoritos (slider horizontal)
+            //* Sección de Favoritos (ListView horizontal)
             FavoriteSlider(),
-            //* Sección de Albums
+            const SizedBox(height: 20),
+            //* Sección de Albums (ListView vertical)
             AlbumListView(),
+            const SizedBox(height: 50),
           ],
         ),
       ),
     );
   }
 }
-
