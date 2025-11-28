@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 // import '../../../routes/app_pages.dart';
-import '../../../core/values/app_styles.dart';
+// import '../../../core/values/app_styles.dart';
 import '../controllers/home_controller.dart';
 import '../widgets/widgets.dart';
 
@@ -14,7 +14,7 @@ class HomeView extends GetView<HomeController> {
       appBar: AppBar(
         // title: const Text('Inicio'),
         // centerTitle: true,
-        leading: IconButton(icon: Icon(Icons.menu), onPressed: () {}),
+        leading: IconButton(icon: Icon(Icons.sort), onPressed: () {}),
         actions: [
           SearchAnchor(
             builder: (context, controller) {
@@ -45,9 +45,11 @@ class HomeView extends GetView<HomeController> {
       ),
       body: SingleChildScrollView(
         child: Column(
-          // mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            //* Banner de escuchados recientemente
             MusicBanner(),
+            //* Sección de Favoritos (slider horizontal)
+            FavoriteSlider(),
           ],
         ),
       ),

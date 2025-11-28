@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../core/values/values.dart';
+import 'widgets.dart';
 
 class MusicBanner extends StatelessWidget {
   const MusicBanner({super.key});
@@ -19,29 +20,12 @@ class MusicBanner extends StatelessWidget {
           image: AssetImage('assets/images/cover-1.jpg'),
           fit: BoxFit.cover,
         ),
-        boxShadow: [
-          BoxShadow(
-            // ignore: deprecated_member_use
-            color: Colors.purple.withOpacity(0.3), // Un poco de sombra púrpura
-            blurRadius: 10,
-            offset: const Offset(0, 4),
-          ),
-        ],
+        boxShadow: [AppStyles.boxShadowBanner],
       ),
       child: Stack(
         children: [
-          //*Filtro Oscuro con Degradado (para que el texto se lea mejor)
-          Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15),
-              gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [Colors.black12, Colors.black87],
-              ),
-            ),
-          ),
-          //Contenido: Texto y Botón
+          //*Filtro Oscuro con Degradado
+          Container(decoration: AppStyles.darkFilterGradient),
           Padding(
             padding: const EdgeInsets.symmetric(
               horizontal: 15.0,
@@ -62,17 +46,20 @@ class _BannerContent extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         //*Etiqueta
-        Chip(
-          label: const Text(
-            'Escuchado recientemente',
-            style: AppStyles.chipBanner,
+        Container(
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+          decoration: BoxDecoration(
+            color: Colors.black26,
+            borderRadius: BorderRadius.circular(20),
           ),
-          // ignore: deprecated_member_use
-          // backgroundColor: Colors.black45,
-          backgroundColor: Colors.black.withOpacity(0.5),
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+          child: const Text(
+            'Escuchado recientemente',
+            style: AppStyles.tagBanner,
+          ),
         ),
+
         const Spacer(),
+
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -80,6 +67,7 @@ class _BannerContent extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  //!Estatico, aqui se deberia importar las canciones
                   Text('Sweet Melody', style: AppStyles.musicBannerTitle),
                   Text(
                     'Little Mix - 2023, Álbum 32',
@@ -88,33 +76,10 @@ class _BannerContent extends StatelessWidget {
                 ],
               ),
             ),
-            BannerButton(),
+            PlayButton(),
           ],
         ),
       ],
-    );
-  }
-}
-
-class BannerButton extends StatelessWidget {
-  const BannerButton({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    
-    return TextButton(
-      onPressed: () {},
-      style: AppStyles.bannerButton,
-      child: const Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Icon(Icons.play_arrow_rounded, size: 20),
-          SizedBox(width: 5),
-          Text('Reproducir', style: TextStyle(fontSize: 14)),
-        ],
-      ),
     );
   }
 }

@@ -27,9 +27,10 @@ abstract class AppStyles {
     color: Colors.white70,
   );
 
-  static const TextStyle chipBanner = TextStyle(
-    fontSize: 10,
+  static const TextStyle tagBanner = TextStyle(
+    fontSize: 5,
     color: Colors.white,
+    fontStyle: FontStyle.italic,
   );
 
   //? 2. Decoración de Inputs (¡Sí, también se puede!)
@@ -64,12 +65,37 @@ abstract class AppStyles {
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
   );
 
-  static final ButtonStyle bannerButton= TextButton.styleFrom(
-    backgroundColor: Colors.white10,
+  static final ButtonStyle bannerButton = TextButton.styleFrom(
+    backgroundColor: Color.fromARGB(38, 255, 255, 255),
+    foregroundColor: Colors.white,
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(20),
       side: BorderSide(color: Colors.white30),
     ),
     padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
   );
+
+  //? 4. Otros estilos globales
+  //*Sombra para tarjetas
+  static BoxShadow boxShadowBanner = BoxShadow(
+    // ignore: deprecated_member_use
+    color: const Color.fromARGB(75, 155, 39, 176), // Un poco de sombra púrpura
+    blurRadius: 10,
+    offset: Offset(0, 4),
+  );
+  //*Degradado oscuro para banners
+  static BoxDecoration darkFilterGradient = BoxDecoration(
+    borderRadius: BorderRadius.circular(15),
+    gradient: LinearGradient(
+      begin: Alignment.topCenter,
+      end: Alignment.bottomCenter,
+      colors: [Colors.black12, Colors.black87],
+    ),
+  );
+  //*Estilo para las imágenes en slider
+  static BoxDecoration favoriteImageDecoration = BoxDecoration(
+    borderRadius: BorderRadius.circular(10),
+    boxShadow: [boxShadowBanner],
+  );
+  
 }
