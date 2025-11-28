@@ -50,6 +50,8 @@ class HomeView extends GetView<HomeController> {
             MusicBanner(),
             //* Sección de Favoritos (slider horizontal)
             FavoriteSlider(),
+            //* Sección de Albums
+            AlbumListView(),
           ],
         ),
       ),

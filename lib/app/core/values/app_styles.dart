@@ -32,6 +32,8 @@ abstract class AppStyles {
     color: Colors.white,
     fontStyle: FontStyle.italic,
   );
+  
+  static const TextStyle btnPlay = TextStyle(fontSize: 14, color: Colors.white);
 
   //? 2. Decoración de Inputs (¡Sí, también se puede!)
   static final InputDecoration loginInputDecoration = InputDecoration(
@@ -97,5 +99,4 @@ abstract class AppStyles {
     borderRadius: BorderRadius.circular(10),
     boxShadow: [boxShadowBanner],
   );
-  
 }

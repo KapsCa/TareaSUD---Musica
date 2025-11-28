@@ -17,7 +17,7 @@ class PlayButton extends StatelessWidget {
         children: [
           Icon(Icons.play_arrow_rounded, size: 20),
           SizedBox(width: 5),
-          Text(AppStrings.btnPlay, style: TextStyle(fontSize: 14)),
+          Text(AppStrings.btnPlay, style: AppStyles.btnPlay),
         ],
       ),
     );

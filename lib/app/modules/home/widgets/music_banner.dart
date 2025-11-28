@@ -26,6 +26,7 @@ class MusicBanner extends StatelessWidget {
         children: [
           //*Filtro Oscuro con Degradado
           Container(decoration: AppStyles.darkFilterGradient),
+          //*Contenido del Banner
           Padding(
             padding: const EdgeInsets.symmetric(
               horizontal: 15.0,
@@ -53,7 +54,7 @@ class _BannerContent extends StatelessWidget {
             borderRadius: BorderRadius.circular(20),
           ),
           child: const Text(
-            'Escuchado recientemente',
+            AppStrings.recentlyPlayed,
             style: AppStyles.tagBanner,
           ),
         ),
