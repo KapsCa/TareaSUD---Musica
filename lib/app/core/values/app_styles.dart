@@ -5,13 +5,12 @@ abstract class AppStyles {
   static const TextStyle title = TextStyle(
     fontSize: 24,
     fontWeight: FontWeight.bold,
-    overflow: TextOverflow.ellipsis,
     color: Colors.white,
   );
 
   static const TextStyle subtitle = TextStyle(
     fontSize: 14,
-    color: Colors.white70,
+    color: Color.fromARGB(179, 255, 255, 255),
   );
 
   static const TextStyle duration = TextStyle(
@@ -33,7 +32,7 @@ abstract class AppStyles {
   
 
   static const TextStyle copyright = TextStyle(
-    color: Colors.white70,
+    color: Color.fromARGB(179, 255, 255, 255),
     fontSize: 12,
   );
 
@@ -44,7 +43,7 @@ abstract class AppStyles {
 
   static const TextStyle musicBannerSubtitle = TextStyle(
     fontSize: 14,
-    color: Colors.white70,
+    color: Color.fromARGB(179, 255, 255, 255),
   );
 
   static const TextStyle tagBanner = TextStyle(
@@ -57,7 +56,7 @@ abstract class AppStyles {
 
   //? 2. Decoración de Inputs (¡Sí, también se puede!)
   static final InputDecoration loginInputDecoration = InputDecoration(
-    prefixIcon: const Icon(Icons.phone_iphone_rounded, color: Colors.white70),
+    prefixIcon: const Icon(Icons.phone_iphone_rounded, color: Color.fromARGB(179, 255, 255, 255)),
     border: OutlineInputBorder(
       borderRadius: BorderRadius.circular(10.0),
       borderSide: const BorderSide(color: Colors.purple),
@@ -71,7 +70,7 @@ abstract class AppStyles {
       borderSide: const BorderSide(color: Colors.deepPurple, width: 2.0),
     ),
     filled: true,
-    fillColor: Colors.white12,
+    fillColor: const Color.fromARGB(31, 255, 255, 255),
     floatingLabelBehavior: FloatingLabelBehavior.always,
     contentPadding: const EdgeInsets.symmetric(
       vertical: 15.0,
@@ -92,7 +91,7 @@ abstract class AppStyles {
     foregroundColor: Colors.white,
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(20),
-      side: BorderSide(color: Colors.white30),
+      side: BorderSide(color: const Color.fromARGB(77, 255, 255, 255)),
     ),
     padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
   );
@@ -114,7 +113,7 @@ abstract class AppStyles {
     gradient: LinearGradient(
       begin: Alignment.topCenter,
       end: Alignment.bottomCenter,
-      colors: [Colors.black12, Colors.black87],
+      colors: [const Color.fromARGB(31, 0, 0, 0), const Color.fromARGB(221, 0, 0, 0)],
     ),
   );
   //*Estilo para las imágenes en slider

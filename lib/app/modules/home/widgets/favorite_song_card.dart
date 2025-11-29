@@ -37,7 +37,7 @@ class FavoriteSongCard extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(
                   horizontal: 8.0,
                 ),
-                color: Colors.black38,
+                color: const Color.fromARGB(97, 0, 0, 0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [

@@ -50,7 +50,7 @@ class _BannerContent extends StatelessWidget {
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
           decoration: BoxDecoration(
-            color: Colors.black26,
+            color: const Color.fromARGB(66, 0, 0, 0),
             borderRadius: BorderRadius.circular(20),
           ),
           child: const Text(

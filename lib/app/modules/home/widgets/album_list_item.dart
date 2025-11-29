@@ -33,7 +33,7 @@ class AlbumListItem extends StatelessWidget {
           ),
           IconButton(
             padding: const EdgeInsets.all(0),
-            icon: const Icon(Icons.more_vert, color: Colors.white70),
+            icon: const Icon(Icons.more_vert, color: Color.fromARGB(179, 255, 255, 255)),
             onPressed: () {},
           ),
           const SizedBox(width: 10),

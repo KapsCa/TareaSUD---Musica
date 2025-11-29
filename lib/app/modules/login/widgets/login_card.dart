@@ -16,10 +16,10 @@ class LoginCard extends GetView<LoginController> {
       padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
       margin: const EdgeInsets.symmetric(horizontal: 20),
       decoration: BoxDecoration(
-        color: Colors.black26,
+        color: const Color.fromARGB(66, 0, 0, 0),
         boxShadow: [
           BoxShadow(
-            color: Colors.black38,
+            color: const Color.fromARGB(97, 0, 0, 0),
             spreadRadius: 5,
             blurRadius: 7,
             offset: const Offset(0, 3),
