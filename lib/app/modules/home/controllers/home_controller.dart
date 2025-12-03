@@ -2,16 +2,14 @@ import 'package:get/get.dart';
 import '../../../data/models/song_model.dart';
 
 class HomeController extends GetxController {
-  // Lista para la sección "Favourite Songs"
-
+  //?funcion para iniciar el controllador
   @override
   void onInit() {
     super.onInit();
-    //?funcion perros
-    // getDatum();
     favoriteSongsObs.refresh();
   }
 
+  // Lista para la sección "Favourite Songs"
   RxList<Song> favoriteSongsObs = <Song>[
     const Song(
       title: 'Yaar Naa Miley',
@@ -161,4 +159,10 @@ class HomeController extends GetxController {
     update();
   }
 
+  // void deleteDogs(){
+  //   BreedsDogs dog = futureBreedsDogs.firstWhere();
+  //   futureBreedsDogs.remove(dog);
+  //   futureBreedsDogs.refresh();
+  //   update();
+  // }
 }

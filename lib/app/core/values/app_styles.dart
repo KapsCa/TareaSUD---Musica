@@ -44,6 +44,7 @@ abstract class AppStyles {
   );
   
   static const TextStyle btnPlay = TextStyle(fontSize: 14);
+  static const TextStyle dogsDescription = TextStyle(fontSize: 12);
 
   //? 2. Decoración de Inputs (¡Sí, también se puede!)
   static final InputDecoration loginInputDecoration = InputDecoration(
@@ -93,7 +94,6 @@ abstract class AppStyles {
 
   //*Sombra para tarjetas
   static BoxShadow boxShadowBanner = BoxShadow(
-    // ignore: deprecated_member_use
     color: const Color.fromARGB(75, 155, 39, 176), // Un poco de sombra púrpura
     blurRadius: 10,
     offset: Offset(0, 4),
