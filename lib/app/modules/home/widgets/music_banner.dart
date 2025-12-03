@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
 
 import '../../../core/values/values.dart';
+import '../controllers/home_controller.dart';
 import 'widgets.dart';
 
 class MusicBanner extends StatelessWidget {
@@ -40,7 +42,7 @@ class MusicBanner extends StatelessWidget {
   }
 }
 
-class _BannerContent extends StatelessWidget {
+class _BannerContent extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -61,24 +63,32 @@ class _BannerContent extends StatelessWidget {
 
         const Spacer(),
 
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  //!Estatico, aqui se deberia importar las canciones
-                  Text('Sweet Melody', style: AppStyles.musicBannerTitle),
-                  Text(
-                    'Little Mix - 2023, Álbum 32',
-                    style: AppStyles.musicBannerSubtitle,
-                  ),
-                ],
+        Obx(
+          () => Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      controller.albumListObs[0].title,
+                      style: AppStyles.musicBannerTitle.copyWith(
+                        fontWeight: FontWeight.w900,
+                      ),
+                    ),
+                    Text(
+                      controller.albumListObs[0].artist,
+                      style: AppStyles.musicBannerSubtitle.copyWith(
+                        color: Color.fromARGB(179, 255, 255, 255),
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
-            PlayButton(),
-          ],
+              PlayButton(),
+            ],
+          ),
         ),
       ],
     );

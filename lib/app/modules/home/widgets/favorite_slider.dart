@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../core/values/values.dart';
-import '../../../data/models/song_model.dart';
 import '../controllers/home_controller.dart';
 import 'widgets.dart';
 

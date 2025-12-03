@@ -2,9 +2,17 @@ import 'package:get/get.dart';
 import '../../../data/models/song_model.dart';
 
 class HomeController extends GetxController {
-  
   // Lista para la sección "Favourite Songs"
-  final favoriteSongsObs = <Song>[
+
+  @override
+  void onInit() {
+    super.onInit();
+    //?funcion perros
+    // getDatum();
+    favoriteSongsObs.refresh();
+  }
+
+  RxList<Song> favoriteSongsObs = <Song>[
     const Song(
       title: 'Yaar Naa Miley',
       artist: 'Faisley',
@@ -61,88 +69,96 @@ class HomeController extends GetxController {
       album: 'The Festival',
       imagePath: 'assets/images/cover-11.jpg',
     ),
-  ].obs; 
+  ].obs;
 
-  // Lista para la sección "Album" 
-  final albumListObs = <Song>[
-    const Song(
-      title: 'aitbaar nahi karna...',
+  // Lista para la sección "Album"
+  RxList<Song> albumListObs = <Song>[
+    Song(
+      title: 'aitbaar nahi jjj',
       artist: 'D.J. Karlx',
       duration: '04:40',
       album: 'Reggae Hits',
       imagePath: 'assets/images/cover-19.jpg',
     ),
-    const Song(
+    Song(
       title: '04 - Yaar Naa Miley',
       artist: 'John Salle',
       duration: '06:00',
       album: 'New Edition',
       imagePath: 'assets/images/cover-1.jpg',
     ),
-    const Song(
+    Song(
       title: 'Mere Dil Ki Duniya M',
       artist: 'Titania',
       duration: '08:00',
       album: 'Chill Music',
       imagePath: 'assets/images/cover-9.jpg',
     ),
-    const Song(
+    Song(
       title: 'Faisley-Kamal K..',
       artist: 'Natalie Jazz',
       duration: '03:51',
       album: 'Black Tour',
       imagePath: 'assets/images/cover-13.jpg',
     ),
-    const Song(
+    Song(
       title: 'Body and Soul',
       artist: 'Festival 2019',
       duration: '04:15',
       album: 'Jazz Fusion',
       imagePath: 'assets/images/cover-12.jpg',
     ),
-    const Song(
+    Song(
       title: 'Let The Music Move You',
       artist: 'DJ Patrick',
       duration: '03:45',
       album: 'Mucis Fest',
       imagePath: 'assets/images/cover-14.jpg',
     ),
-    const Song(
+    Song(
       title: 'Illusions',
       artist: 'The Artist',
       duration: '04:30',
       album: 'Neon Art',
       imagePath: 'assets/images/cover-15.jpg',
     ),
-    const Song(
+    Song(
       title: 'Music Party',
       artist: 'DJ ONE',
       duration: '05:05',
       album: 'Retro Wave',
       imagePath: 'assets/images/cover-16.jpg',
     ),
-    const Song(
+    Song(
       title: 'NEW ALBUM',
       artist: 'MARCUS PALOOZA',
       duration: '03:30',
       album: 'The New One',
       imagePath: 'assets/images/cover-17.jpg',
     ),
-    const Song(
+    Song(
       title: 'MUSIC FEST',
       artist: 'HAVANA CLUB',
       duration: '04:00',
       album: 'Your Logo',
       imagePath: 'assets/images/cover-18.jpg',
     ),
-    const Song(
+    Song(
       title: 'RAVE FESTIVAL',
       artist: 'LORE CITY',
       duration: '04:10',
       album: 'Rave Culture',
       imagePath: 'assets/images/cover-1O.jpg',
     ),
-  ].obs; 
+  ].obs;
 
-  
+  void deleteMusic() {
+    Song song = albumListObs.firstWhere(
+      (title) => title.title == '04 - Yaar Naa Miley',
+    );
+    albumListObs.remove(song);
+    albumListObs.refresh();
+    update();
+  }
+
 }

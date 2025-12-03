@@ -6,10 +6,6 @@ import '../controllers/login_controller.dart';
 class LoginCard extends GetView<LoginController> {
   const LoginCard({super.key});
 
-  static const _titleStyle = AppStyles.title;
-
-  static const _subtitleStyle = AppStyles.subtitle;
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -41,14 +37,14 @@ class LoginCard extends GetView<LoginController> {
           //*Titulo y subtitulo
           Text(
             AppStrings.loginTitle,
-            style: _titleStyle,
+            style: AppStyles.title,
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 8),
 
           Text(
             AppStrings.loginSubtitle,
-            style: _subtitleStyle,
+            style: AppStyles.subtitle.copyWith(color: Color.fromARGB(179, 255, 255, 255),),
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 16),

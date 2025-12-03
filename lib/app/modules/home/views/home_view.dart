@@ -42,7 +42,7 @@ class HomeView extends GetView<HomeController> {
              Container(
               height: 80,
               decoration: BoxDecoration(color: Colors.deepPurple),
-              padding: EdgeInsetsGeometry.only(left: 15, top: 30),
+              padding: EdgeInsets.only(left: 15, top: 30),
               margin: EdgeInsets.zero,
               child: Text(AppStrings.menuTitle, style: AppStyles.menuTitle),
             ),
@@ -68,11 +68,16 @@ class HomeView extends GetView<HomeController> {
             FavoriteSlider(),
             const SizedBox(height: 20),
             //* Sección de Albums (ListView vertical)
-            AlbumListView(),
+            DogsListview(),
             const SizedBox(height: 50),
           ],
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: (){
+          controller.deleteMusic();
+        },
+      )
     );
   }
 }

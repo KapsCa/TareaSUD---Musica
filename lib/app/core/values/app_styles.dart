@@ -4,29 +4,23 @@ abstract class AppStyles {
   //? 1. Estilos de Texto
   static const TextStyle title = TextStyle(
     fontSize: 24,
-    fontWeight: FontWeight.bold,
-    color: Colors.white,
   );
 
   static const TextStyle subtitle = TextStyle(
     fontSize: 14,
-    color: Color.fromARGB(179, 255, 255, 255),
   );
 
   static const TextStyle duration = TextStyle(
     fontSize: 10,
-    color: Colors.white,
   );
 
   static const TextStyle menuTitle = TextStyle(
     fontSize: 24,
     fontWeight: FontWeight.bold,
-    color: Colors.white,
     );
 
   static const TextStyle menuOptions = TextStyle(
     fontSize: 16,
-    color: Colors.white,
     fontStyle: FontStyle.italic,
   );
   
@@ -38,21 +32,18 @@ abstract class AppStyles {
 
   static const TextStyle musicBannerTitle = TextStyle(
     fontSize: 22,
-    fontWeight: FontWeight.w900,
   );
 
   static const TextStyle musicBannerSubtitle = TextStyle(
     fontSize: 14,
-    color: Color.fromARGB(179, 255, 255, 255),
   );
 
   static const TextStyle tagBanner = TextStyle(
     fontSize: 5,
-    color: Colors.white,
     fontStyle: FontStyle.italic,
   );
   
-  static const TextStyle btnPlay = TextStyle(fontSize: 14, color: Colors.white);
+  static const TextStyle btnPlay = TextStyle(fontSize: 14);
 
   //? 2. Decoración de Inputs (¡Sí, también se puede!)
   static final InputDecoration loginInputDecoration = InputDecoration(
