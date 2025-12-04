@@ -19,7 +19,7 @@ class DogController extends GetxController {
     isloading.value = true;
     try {
       final results = await dogRepository.getBreedsDogs();
-      listBreedsDogs.add(results);
+      listBreedsDogs.assignAll(results);
       isloading.value = false;
     } catch (e) {
       isloading.value = false;

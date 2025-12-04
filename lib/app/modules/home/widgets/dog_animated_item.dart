@@ -105,18 +105,17 @@ Widget _buildStatsRow(dynamic dog) {
     children: [
       Column(
         children: [
-          Text(dog.maleWeight ?? 'altura min desconocida'),
-          Text(dog.maleWeight ?? 'altura max desconocida'),
+          Text(
+            'Peso de machos de: ${dog.maleWeight.min} - ${dog.maleWeight.max} kg',
+          ),
+          Text(
+            'Peso de hembras de: ${dog.femaleWeight.min} - ${dog.femaleWeight.max} kg',
+          ),
+          Text('Tiempo de vida: ${dog.life.min} - ${dog.life.max} años'),
+          Text('Es hypolergenico?'),
+          Switch(value: dog.hypoallergenic, onChanged: (value) {}),
         ],
       ),
-      Column(
-        children: [
-          Text(dog.femaleWeight ?? 'hembra min desconocida'),
-          Text(dog.femaleWeight ?? 'hembra max desconocida'),
-        ],
-      ),
-      // _statItem("Vida", "${dog.life?.min} - ${dog.life?.max}"),
-      // _statItem("Macho",, "${dog.maleWeight?.max} kg"),
       // _statItem("Hipoalerg.", dog.hypoallergenic == true ? "Sí" : "No"),
     ],
   );

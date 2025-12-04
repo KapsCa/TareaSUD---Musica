@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 import '../models/dog_model.dart';
 import '../providers/dog_provider.dart';
 
@@ -5,8 +7,16 @@ class DogRepository {
   DogRepository(this.dogProvider);
   final DogProvider dogProvider;
 
-  Future<BreedsDogs> getBreedsDogs() async {
+  Future<List<BreedsDogs>> getBreedsDogs() async {
     final response = await dogProvider.fetchBreedsDogs();
-    return BreedsDogs.fromMap(response);
+    final responseData = response['data'];
+    if (responseData != null) {
+      final results = <BreedsDogs>[];
+      for (var item in responseData) {
+        results.add(BreedsDogs.fromMap(item['attributes']));
+      }
+      return results;
+    }
+    return [];
   }
 }
