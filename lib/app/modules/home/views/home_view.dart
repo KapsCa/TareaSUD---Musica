@@ -73,11 +73,11 @@ class HomeView extends GetView<HomeController> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: (){
-          controller.deleteMusic();
-        },
-      )
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: (){
+      //     controller.deleteMusic();
+      //   },
+      // )
     );
   }
 }

@@ -150,15 +150,6 @@ class HomeController extends GetxController {
     ),
   ].obs;
 
-  void deleteMusic() {
-    Song song = albumListObs.firstWhere(
-      (title) => title.title == '04 - Yaar Naa Miley',
-    );
-    albumListObs.remove(song);
-    albumListObs.refresh();
-    update();
-  }
-
   // void deleteDogs(){
   //   BreedsDogs dog = futureBreedsDogs.firstWhere();
   //   futureBreedsDogs.remove(dog);

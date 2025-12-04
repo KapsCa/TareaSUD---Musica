@@ -19,23 +19,25 @@ class DogsListview extends GetView<DogController> {
             child: Text(AppStrings.album, style: AppStyles.title),
           ),
         ),
-        FutureBuilder(
-          future: controller.loadBreedsDogs(),
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              return ListView.builder(
-                itemCount: snapshot.data!.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return DogsListItem(dog: snapshot.data![index]);
-                },
-              );
-            } else if (snapshot.hasError) {
-              return Text('${snapshot.error}');
-            }
-            // By default, show a loading spinner.
+        Obx(() {
+          final listBreedsDogs = controller.listBreedsDogs;
+          if (controller.isloading.value) {
+            //Primero, carga los datos.
             return const CircularProgressIndicator();
-          },
-        ),
+          } else if (listBreedsDogs.isEmpty) {
+            return Text('No hay datos para mostrar');
+          } else {
+            //ya cargo y los muestra
+            return ListView.builder(
+              itemCount: listBreedsDogs.length,
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemBuilder: (BuildContext context, int index) {
+                return DogAnimatedItem(dog: listBreedsDogs[index]);
+              },
+            );
+          }
+        }),
       ],
     );
   }
