@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 
 import '../../../routes/app_pages.dart';
 import '../../../core/values/values.dart';
+import '../controllers/dog_controller.dart';
 import '../controllers/home_controller.dart';
 import '../widgets/widgets.dart';
 
@@ -11,6 +12,7 @@ class HomeView extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
+    final dogController = Get.find<DogController>();
     return Scaffold(
       appBar: AppBar(
         actions: [
@@ -59,18 +61,28 @@ class HomeView extends GetView<HomeController> {
           ],
         ),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            //* Banner de escuchados recientemente
-            MusicBanner(),
-            //* Sección de Favoritos (ListView horizontal)
-            FavoriteSlider(),
-            const SizedBox(height: 20),
-            //* Sección de Albums (ListView vertical)
-            DogsListview(),
-            const SizedBox(height: 50),
-          ],
+      body: RefreshIndicator(
+        // Color del circulito de carga
+        color: Colors.purple, 
+        backgroundColor: Colors.white,
+        
+        // Llamamos a la función de recarga
+        onRefresh: () async {
+          await dogController.loadBreedsDogs();
+        },
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              //* Banner de escuchados recientemente
+              MusicBanner(),
+              //* Sección de Favoritos (ListView horizontal)
+              FavoriteSlider(),
+              const SizedBox(height: 20),
+              //* Sección de Albums (ListView vertical)
+              DogsListview(),
+              const SizedBox(height: 50),
+            ],
+          ),
         ),
       ),
       // floatingActionButton: FloatingActionButton(

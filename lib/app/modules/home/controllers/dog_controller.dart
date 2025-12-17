@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../data/models/dog_model.dart';
@@ -23,7 +24,10 @@ class DogController extends GetxController {
       isloading.value = false;
     } catch (e) {
       isloading.value = false;
-      throw Exception(e);
+      Get.snackbar('Error', 'Ocurrio un problema: $e',
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: const Color.fromARGB(64, 255, 82, 82),
+          colorText: Colors.white);
     }
   }
 

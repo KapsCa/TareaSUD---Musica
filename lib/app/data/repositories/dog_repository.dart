@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 import '../models/dog_model.dart';
 import '../providers/dog_provider.dart';
 

@@ -11,7 +11,7 @@ class DogProvider {
     final String endpoint = '/v2/breeds';
     final url = Uri.parse('${AppAssets.baseUrl}$endpoint');
     try {
-      final response = await client.get(url);
+      final response = await client.get(url).timeout(const Duration(seconds: 10));
       if (response.statusCode == 200) {
         return jsonDecode(response.body);
       } else {

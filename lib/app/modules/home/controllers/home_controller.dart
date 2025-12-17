@@ -149,7 +149,6 @@ class HomeController extends GetxController {
       imagePath: 'assets/images/cover-1O.jpg',
     ),
   ].obs;
-
   // void deleteDogs(){
   //   BreedsDogs dog = futureBreedsDogs.firstWhere();
   //   futureBreedsDogs.remove(dog);
