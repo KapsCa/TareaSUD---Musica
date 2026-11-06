@@ -1,16 +1,12 @@
 <!-- kapsca-brand v1 (vendored copy of KapsCa/kapsca-brand; do not edit manually) -->
-<p align="center"><picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/brand/kapsca-512.png">
-  <source media="(prefers-color-scheme: light)" srcset="assets/brand/kapsca-mono-white.svg">
-  <img src="assets/brand/kapsca-512.png" alt="KapsCa" width="96">
-</picture></p>
 <p align="center"><img src="assets/brand/banner.png" alt="KapsCa" width="700"></p>
 <!-- /kapsca-brand -->
 
 
 # TareaSUD-Musica 🎵
 
-App de música desarrollada en Flutter, refactorizada bajo principios de **Clean Architecture** y **GetX**.
+App de **prueba móvil** hecha en Flutter (tarea de desarrollo móvil para **sudSolutions**).
+No es un producto completo: el objetivo es ejercitar el stack — **Clean Architecture** y **GetX** — sobre una app chica y real.
 
 ## Arquitectura
 Este proyecto sigue una estructura modular para asegurar escalabilidad y mantenibilidad:
@@ -28,7 +24,7 @@ Este proyecto sigue una estructura modular para asegurar escalabilidad y manteni
 
 ## Instalación
 ```bash
-git clone git@github.com:KkapsCa/TareaSUD---Musica.git
+git clone git@github.com:KapsCa/TareaSUD---Musica.git
 cd TareaSUD---Musica
 flutter pub get
 flutter run
